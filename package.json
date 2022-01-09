@@ -1,0 +1,82 @@
+{
+  "name": "planner",
+  "version": "v0.1.0",
+  "main": "public/build/main.js",
+  "scripts": {
+    "start": "cross-env MODE=dev electron .",
+    "dev": "rollup -cw",
+    "build": "rollup -c",
+    "postinstall": "electron-builder install-app-deps",
+    "package": "npm run build && electron-builder build",
+    "package-all": "npm run build && electron-builder build -mwl",
+    "package-linux": "npm run build && electron-builder build --linux",
+    "package-win": "npm run build && electron-builder build --win --x64",
+    "release": "cross-env MODE=prod electron-builder -p always -wl"
+  },
+  "build": {
+    "productName": "planner",
+    "appId": "com.nespolibt.planner",
+    "extraResources": [
+      "public/build/Database.db"
+    ],
+    "files": [
+      "node_modules/",
+      "public/",
+      "public/build",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    },
+    "publish": [
+      "github"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NespoliBT/planner.git"
+  },
+  "author": {
+    "name": "NespoliBT",
+    "email": "nespoli.bt@gmail.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.2",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@tsconfig/svelte": "^1.0.10",
+    "@types/axios": "^0.14.0",
+    "@types/express": "^4.17.11",
+    "electron": "^10.1.5",
+    "electron-builder": "^22.9.1",
+    "electron-reload": "^1.5.0",
+    "node-sass": "^6.0.1",
+    "rollup": "^2.32.1",
+    "rollup-plugin-svelte": "^6.1.0",
+    "sass": "^1.32.8",
+    "svelte": "^3.0.0",
+    "svelte-check": "^1.0.0",
+    "svelte-preprocess": "^4.6.9",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.3"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "better-sqlite3": "^7.1.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "electron-updater": "^4.3.5",
+    "express": "^4.17.1"
+  }
+}
